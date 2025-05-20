@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
             
             if (token) {
                 console.log('Making request to /api/users/me with token');
-                const response = await axios.get('http://localhost:5000/api/users/me', {
+                const response = await axios.get('https://constuctionwebsite-backend.onrender.com/api/users/me', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
         try {
             console.log('Attempting login with email:', email);
-            const response = await axios.post('http://localhost:5000/api/users/login', {
+            const response = await axios.post('https://constuctionwebsite-backend.onrender.com/api/users/login', {
                 email,
                 password
             });
@@ -93,7 +93,7 @@ export function AuthProvider({ children }) {
     const register = async (userData) => {
         try {
             console.log('Attempting registration with data:', { ...userData, password: '[REDACTED]' });
-            const response = await axios.post('http://localhost:5000/api/users/register', userData);
+            const response = await axios.post('https://constuctionwebsite-backend.onrender.com/api/users/register', userData);
             console.log('Registration successful:', response.data);
             return { success: true, data: response.data };
         } catch (error) {
@@ -110,7 +110,7 @@ export function AuthProvider({ children }) {
             const token = localStorage.getItem('token');
             console.log('Attempting logout');
             if (token) {
-                await axios.post('http://localhost:5000/api/users/logout', {}, {
+                await axios.post('https://constuctionwebsite-backend.onrender.com/api/users/logout', {}, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
